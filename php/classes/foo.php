@@ -162,6 +162,5 @@ class	Author {
 		$this->authorUsername = $newAuthorUsername;
 
 	}
-
 }
 ?>

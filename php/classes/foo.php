@@ -1,29 +1,33 @@
 <?php
-/**
-create table author(
-authorId binary(16) not null,
-authorAvatarUrl varchar(255),
-authorActivationToken char(32),
-authorEmail varchar(128) not null,
-authorHash char(97) not null,
-authorUsername varchar(32) not null,
-unique(authorEmail),
-unique(authorUsername),
-INDEX(authorEmail),
-primary key(authorId)
-);
- */
 
 /**
- * Author Table Class.
+ * Author Table Class
+ *
+ * DDL Script for Author Table Below
+ *
+ * create table author(
+ * authorId binary(16) not null,
+ * authorAvatarUrl varchar(255),
+ * authorActivationToken char(32),
+ * authorEmail varchar(128) not null,
+ * authorHash char(97) not null,
+ * authorUsername varchar(32) not null,
+ * unique(authorEmail),
+ * unique(authorUsername),
+ * INDEX(authorEmail),
+ * primary key(authorId)
+ * );
  *
  * This author profile is an abbreviated example of the data collected and stored about a author.
- *	This information can be extended to included additioonal information about the author.
+ *	This information can be extended to included additional information about the author.
  *
  * @author Marsha Battee <marsha@sanesuite.com>
  **/
 
 class	Author {
+
+	//:::::::::::::::::START OF STATE VARIABLES:::::::::::::::::
+
 	/**
 	 *ID for this profile. This is the primary key.
 	 */
@@ -39,9 +43,9 @@ class	Author {
 	/**
 	 *Email for this profile. This is a unique index.
 	 */
-	private	$authorEmail;
+	private $authorEmail;
 	/**
-	Has for profile password.
+	 * Hash for profile password.
 	 */
 	private $authorHash;
 	/**
@@ -49,7 +53,9 @@ class	Author {
 	 */
 	private $authorUsername;
 
+	//::::::::::::::::END OF STATE VARIABLES::::::::::::::::::::
 
+	//::::::::::::::::BEGIN METHODS:::::::::::::::::::::::::::::
 
 	/**
 	 * Accessor method for authorId
@@ -57,8 +63,9 @@ class	Author {
 	 */
 
 	public function getAuthorId() {
-		return($this->getAuthorId);
+		return ($this->getAuthorId());
 	}
+
 	/**
 	 * Mutator method for authorId allows author to set a new Id for author.
 	 *
@@ -74,13 +81,15 @@ class	Author {
 		}
 		//convert and store the author id
 		$this->authorId = intval($newAuthorId);
-
 	}
 
 	/**
 	 * Accessor method for avatarUrl
-	 */
-}
+	 **/
+
+	public function getAvatarUrl() {
+	}
+
 
 	/**
 	 * Accessor method for authorActivationToken
@@ -96,7 +105,7 @@ class	Author {
 	 **/
 	public function getAuthorHash(): string {
 		return $this->authorHash;
-		}
+	}
 
 	/**
 	 * Mutator method for author hash allows author another hash
@@ -107,7 +116,7 @@ class	Author {
 	 * @throws \TypeError if profile hash is not a string
 	 **/
 
-	public function setAuthorHash (string $newAuthorHash): void {
+	public function setAuthorHash(string $newAuthorHash): void {
 		//enforces that the author hash is properly formatted
 		$newAuthorHash = trim($newAuthorHash);
 		if(empty($newAuthorHash) === true) {
@@ -124,10 +133,25 @@ class	Author {
 		}
 		//stores the hash
 		$this->authorHash = $newAuthorHash;
-};
+	};
 
 
 	/**
 	 * Accessor method for authorUsername
+	 *
+	 * @return string value for author username
 	 */
+	public function getAuthorUsername() {
+		return($this->authorUsername);
+	}
+	/**
+	 * Mutator method for authorUsername
+	 * @param string $newAuthorUsername is the new value for author username
+	 * @throws UnexpectedValueException if $newAuthorUsername is not a string
+	 **/
+
+	public function setAuthorUsername(){
+
+	}
+}
 ?>

@@ -142,16 +142,26 @@ class	Author {
 	 * @return string value for author username
 	 */
 	public function getAuthorUsername() {
-		return($this->authorUsername);
+		return ($this->authorUsername);
 	}
+
 	/**
 	 * Mutator method for authorUsername
 	 * @param string $newAuthorUsername is the new value for author username
 	 * @throws UnexpectedValueException if $newAuthorUsername is not a string
 	 **/
 
-	public function setAuthorUsername(){
+	public function setAuthorUsername() {
+		//verifies that first name is valid
+		$newAuthorUsername = filter_var($newAuthorUsername, FILTER_SANITIZE_STRING);
+		if($newAuthorUsername === false) {
+			throw(new UnexpectedValueException("first name is not a valid string"));
+		}
+
+		//store and save the author username
+		$this->authorUsername = $newAuthorUsername;
 
 	}
+
 }
 ?>

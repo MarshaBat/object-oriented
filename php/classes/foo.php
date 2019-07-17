@@ -1,4 +1,5 @@
 <?php
+namespace Mbattee\DataDesign;
 
 /**
  * Author Table Class

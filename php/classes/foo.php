@@ -5,17 +5,17 @@
  *
  * DDL Script for Author Table Below
  *
- * create table author(
- * authorId binary(16) not null,
+ * DONE create table author(
+ * DONE authorId binary(16) not null,
  * authorAvatarUrl varchar(255),
  * authorActivationToken char(32),
  * authorEmail varchar(128) not null,
- * authorHash char(97) not null,
- * authorUsername varchar(32) not null,
- * unique(authorEmail),
- * unique(authorUsername),
- * INDEX(authorEmail),
- * primary key(authorId)
+ * DONE authorHash char(97) not null,
+ * DONE authorUsername varchar(32) not null,
+ * DONE unique(authorEmail),
+ * DONE unique(authorUsername),
+ * DONE INDEX(authorEmail),
+ * DONE primary key(authorId)
  * );
  *
  * This author profile is an abbreviated example of the data collected and stored about a author.
@@ -98,6 +98,19 @@ class	Author {
 	/**
 	 * Accessor method for authorEmail
 	 */
+
+	public function getAuthorEmail() {
+		return($this->authorEmail);
+	}
+
+	/**
+	 * Mutator method for authorEmail
+	 */
+
+	public function setAuthorEmail() {
+
+	}
+
 
 	/**
 	 * Accessor method for authorHash

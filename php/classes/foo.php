@@ -3,21 +3,14 @@
 /**
  * Author Table Class
  *
- * DDL Script for Author Table Below
- *
- * DONE create table author(
  * DONE authorId binary(16) not null,
- * authorAvatarUrl varchar(255),
- * authorActivationToken char(32),
- * DONEauthorEmail varchar(128) not null,
+ * NOT DONE authorAvatarUrl varchar(255),			****CHECK VOIDS and STRINGS in functions****
+ * DONE authorActivationToken char(32),
+ * DONE authorEmail varchar(128) not null,
  * DONE authorHash char(97) not null,
  * DONE authorUsername varchar(32) not null,
- * DONE unique(authorEmail),
- * DONE unique(authorUsername),
- * DONE INDEX(authorEmail),
- * DONE primary key(authorId)
- * );
- *
+
+
  * This author profile is an abbreviated example of the data collected and stored about a author.
  *	This information can be extended to included additional information about the author.
  *
@@ -27,15 +20,14 @@
 class	Author {
 
 	//:::::::::::::::::START OF STATE VARIABLES:::::::::::::::::
-
 	/**
-	 *ID for this profile. This is the primary key.
+	 *This ia an ID for the author's profile. This is the primary key and a numeric value.
 	 */
 	private $authorId;
 	/**
-	 *Website link for the author of this profile.
+	 *A website link for a personal page for the author of this profile.
 	 */
-	private $AvatarUrl;
+	private $avatarUrl;
 	/**
 	 *Token give to verify that the profile is valid and not malicious.
 	 */
@@ -63,7 +55,7 @@ class	Author {
 	 */
 
 	public function getAuthorId() {
-		return ($this->getAuthorId());
+		return ($this->authorId);
 	}
 
 	/**
@@ -85,9 +77,19 @@ class	Author {
 
 	/**
 	 * Accessor method for avatarUrl
+	 *
 	 **/
 
-	public function getAvatarUrl() {
+	public function getAvatarUrl() : string {
+		return($this->avatarUrl);
+	}
+
+	public function setAvatarUrl($newAvatarUrl) {
+		if($newAvatarUrl === ) {
+			$this->AvatarUrl = ;
+			*****
+			MISSING INFORMATION ****
+		}
 	}
 
 
@@ -109,7 +111,7 @@ class	Author {
 	 * @throws \TypeError is $newAuthorActivationToken is not a string
 	 */
 
-	public function setAuthorActivationToken($newAuthorActivationToken) : void {
+	public function setAuthorActivationToken($newAuthorActivationToken) {
 		if($newAuthorActivationToken === null) {
 			$this->AuthorActivationToken = null;
 			return;
@@ -130,7 +132,7 @@ class	Author {
 	 */
 
 	public function getAuthorEmail() {
-		return($this->authorEmail);
+		return ($this->authorEmail);
 	}
 
 	/**
@@ -141,7 +143,7 @@ class	Author {
 	 * @throws \TypeError if $newAuthorEmail is not a string
 	 **/
 
-	public function setAuthorEmail(string $newAuthorEmail): void {
+	public function setAuthorEmail(string $newAuthorEmail) {
 		// This verifies that the email address is secure
 		$newAuthorEmail = trim($newAuthorEmail);
 		$newAuthorEmail = filter_var($newAuthorEmail, FILTER_VALIDATE_EMAIL);
@@ -162,7 +164,7 @@ class	Author {
 	 * @return string value of author hash
 	 **/
 	public function getAuthorHash(): string {
-		return $this->authorHash;
+		return ($this->authorHash);
 	}
 
 	/**
@@ -174,7 +176,7 @@ class	Author {
 	 * @throws \TypeError if profile hash is not a string
 	 **/
 
-	public function setAuthorHash(string $newAuthorHash): void {
+	public function setAuthorHash(string $newAuthorHash) {
 		//enforces that the author hash is properly formatted
 		$newAuthorHash = trim($newAuthorHash);
 		if(empty($newAuthorHash) === true) {
@@ -191,7 +193,7 @@ class	Author {
 		}
 		//stores the hash
 		$this->authorHash = $newAuthorHash;
-	};
+	}
 
 
 	/**
@@ -220,5 +222,21 @@ class	Author {
 		$this->authorUsername = $newAuthorUsername;
 
 	}
+
+	//::::::::::::::::ENDS METHODS:::::::::::::::::::::::::::::
+
+	//::::::::::::::::BEGIN CONSTRUCTOR::::::::::::::::::::::::
+
+	public function __construct($newAuthorId, $newAuthorUrl, $newAuthorActivationToken, $newAuthorEmail, $newAuthorHash,
+										 $newAuthorUsername) {
+		$this->setAuthorId($newAuthorId);
+		$this->setAvatarUrl($newAvatarUrl);
+		$this->setAuthorActivationToken($newAuthorActivationToken);
+		$this->setAuthorEmail($newAuthorEmail);
+		$this->setAuthorHash($newAuthorHash);
+		$this->setAuthorUsername($newAuthorUsername);
+	}
 }
+
+
 ?>

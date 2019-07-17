@@ -110,7 +110,8 @@ class	Author {
 	}
 
 	/**
-	 * Accessor method for avatarUrl
+	 * Accessor method for author avatarUrl
+	 * @return string value of the author avatar url
 	 *
 	 **/
 
@@ -118,12 +119,17 @@ class	Author {
 		return($this->avatarUrl);
 	}
 
-	public function setAvatarUrl($newAvatarUrl) {
-		if($newAvatarUrl === ) {
-			$this->AvatarUrl = ;
-			*****
-			MISSING INFORMATION ****
+	public function setAvatarUrl(string $newAvatarUrl) : void {
+
+		$newAvatarUrl = trim($newAvatarUrl);
+		//filter_flag???
+		$newAvatarUrl = filter_var($newAvatarUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		//verify that new avatar url will fit in the database
+		if(strlen($newAvatarUrl) > 255) {
+			throw(new \RangeException("content is too large"));
 		}
+		//store the author avatar url
+		$this->avatarUrl = $newAvatarUrl;
 	}
 
 
@@ -162,7 +168,7 @@ class	Author {
 	}
 
 	/**
-	 * Accessor method for authorEmail
+	 * Accessor method for authorEmail, this is a unique id and index
 	 */
 
 	public function getAuthorEmail() {
@@ -235,17 +241,17 @@ class	Author {
 	 *
 	 * @return string value for author username
 	 */
-	public function getAuthorUsername() {
+	public function getAuthorUsername() : string {
 		return ($this->authorUsername);
 	}
 
 	/**
-	 * Mutator method for authorUsername
+	 * Mutator method for authorUsername, this is unique
 	 * @param string $newAuthorUsername is the new value for author username
 	 * @throws UnexpectedValueException if $newAuthorUsername is not a string
 	 **/
 
-	public function setAuthorUsername() {
+	public function setAuthorUsername() : string {
 		//verifies that first name is valid
 		$newAuthorUsername = filter_var($newAuthorUsername, FILTER_SANITIZE_STRING);
 		if($newAuthorUsername === false) {
@@ -254,12 +260,12 @@ class	Author {
 
 		//store and save the author username
 		$this->authorUsername = $newAuthorUsername;
-
 	}
 
 	//::::::::::::::::END METHODS:::::::::::::::::::::::::::::
 
 	//::::::::::::::::TO-STRING METHOD:::::::::::::::::::::::::::::
+
 	/**
 	 * toString() magic method
 	 *
@@ -277,7 +283,8 @@ class	Author {
 				.	"</p>";
 		return($html);
 		}
-		//::::::::::::::::END TO-STRING METHOD:::::::::::::::::::::::::::::
+
+	//::::::::::::::::END TO-STRING METHOD:::::::::::::::::::::::::::::
 
 	}
 

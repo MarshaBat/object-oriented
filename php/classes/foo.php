@@ -9,7 +9,7 @@
  * DONE authorId binary(16) not null,
  * authorAvatarUrl varchar(255),
  * authorActivationToken char(32),
- * authorEmail varchar(128) not null,
+ * DONEauthorEmail varchar(128) not null,
  * DONE authorHash char(97) not null,
  * DONE authorUsername varchar(32) not null,
  * DONE unique(authorEmail),
@@ -92,8 +92,38 @@ class	Author {
 
 
 	/**
-	 * Accessor method for authorActivationToken
+	 * Accessor method for author account activation token
+	 *
+	 * @return string value for authorActivationToken
 	 */
+
+	public function getAuthorActivationToken() : string {
+		return($this->authorActivationToken);
+	}
+
+	/**
+	 * Mutator  method for author account activation token
+	 * @param string $newAuthorActivationToken for author account activation token
+	 * @throws \InvalidArgumentException if the token is not a string or is not secure
+	 * @throws \RangeException if the token is not exactly 32 characters
+	 * @throws \TypeError is $newAuthorActivationToken is not a string
+	 */
+
+	public function setAuthorActivationToken($newAuthorActivationToken) : void {
+		if($newAuthorActivationToken === null) {
+			$this->AuthorActivationToken = null;
+			return;
+		}
+		$newAuthorActivationToken = strtolower(trim($newAuthorActivationToken));
+		if(ctype_xdigit($newAuthorActivationToken) === false) {
+			throw(new\RangeException("user activation token is not valid"));
+		}
+		//enforces user activation token is only 32 characters
+		if(strlen($newAuthorActivationToken) !== 32) {
+			throw(new\RangeException("user activation token has to be 32"));
+		}
+		$this->authorActivationToken = $newAuthorActivationToken;
+	}
 
 	/**
 	 * Accessor method for authorEmail

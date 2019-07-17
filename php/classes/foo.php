@@ -3,14 +3,6 @@
 /**
  * Author Table Class
  *
- * DONE authorId binary(16) not null,
- * NOT DONE authorAvatarUrl varchar(255),			****CHECK VOIDS and STRINGS in functions****
- * DONE authorActivationToken char(32),
- * DONE authorEmail varchar(128) not null,
- * DONE authorHash char(97) not null,
- * DONE authorUsername varchar(32) not null,
-
-
  * This author profile is an abbreviated example of the data collected and stored about a author.
  *	This information can be extended to included additional information about the author.
  *
@@ -257,7 +249,6 @@ class	Author {
 		if($newAuthorUsername === false) {
 			throw(new UnexpectedValueException("first name is not a valid string"));
 		}
-
 		//store and save the author username
 		$this->authorUsername = $newAuthorUsername;
 	}

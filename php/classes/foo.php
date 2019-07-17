@@ -47,6 +47,40 @@ class	Author {
 
 	//::::::::::::::::END OF STATE VARIABLES::::::::::::::::::::
 
+	//::::::::::::::::BEGIN CONSTRUCTOR::::::::::::::::::::::::
+
+	/**
+	 * Constructor for this Author class
+	 *
+	 * @param string $newAuthorId is the id of this author profile or null if a new author profile
+	 * @param string $newArthurUrl is a string containing the new author url
+	 * @param string $newAuthorActivationToken is the activation token to safeguard against malicious accounts
+	 * @param string $newAuthorEmail is a string containing an email for the author
+	 * @param string $newAuthorHash string containing password hash
+	 * @param string $newAuthorUsername is a string containing the new author username
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if a data type violates a data hint
+	 * @throws \Exception if some other exception occurs
+	 **/
+
+	public function __construct($newAuthorId, $newAuthorUrl, $newAuthorActivationToken, $newAuthorEmail, $newAuthorHash,
+										 $newAuthorUsername) {
+		try {
+			$this->setAuthorId($newAuthorId);
+			$this->setAvatarUrl($newAvatarUrl);
+			$this->setAuthorActivationToken($newAuthorActivationToken);
+			$this->setAuthorEmail($newAuthorEmail);
+			$this->setAuthorHash($newAuthorHash);
+			$this->setAuthorUsername($newAuthorUsername);
+		} catch(\InvalidArgumentException | \RangeException | \TypeError $exception) {
+			//To determine what type of exception was thrown
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
+	//:::::::::::::::::END CONSTRUCTOR::::::::::::::::::::::::::
+
 	//::::::::::::::::BEGIN METHODS:::::::::::::::::::::::::::::
 
 	/**
@@ -225,39 +259,7 @@ class	Author {
 
 	//::::::::::::::::END METHODS:::::::::::::::::::::::::::::
 
-	//::::::::::::::::BEGIN CONSTRUCTOR::::::::::::::::::::::::
 
-	/**
-	 * Constructor for this Author class
-	 *
-	 * @param string $newAuthorId is the id of this author profile or null if a new author profile
-	 * @param string $newArthurUrl is a string containing the new author url
-	 * @param string $newAuthorActivationToken is the activation token to safeguard against malicious accounts
-	 * @param string $newAuthorEmail is a string containing an email for the author
-	 * @param string $newAuthorHash string containing password hash
-	 * @param string $newAuthorUsername is a string containing the new author username
-	 * @throws \InvalidArgumentException if data types are not valid
-	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
-	 * @throws \TypeError if a data type violates a data hint
-	 * @throws \Exception if some other exception occurs
-	 **/
-
-	public function __construct($newAuthorId, $newAuthorUrl, $newAuthorActivationToken, $newAuthorEmail, $newAuthorHash,
-										 $newAuthorUsername) {
-		try {
-			$this->setAuthorId($newAuthorId);
-			$this->setAvatarUrl($newAvatarUrl);
-			$this->setAuthorActivationToken($newAuthorActivationToken);
-			$this->setAuthorEmail($newAuthorEmail);
-			$this->setAuthorHash($newAuthorHash);
-			$this->setAuthorUsername($newAuthorUsername);
-		} catch(\InvalidArgumentException | \RangeException | \TypeError $exception) {
-				//To determine what type of exception was thrown
-				$exceptionType = get_class($exception);
-				throw(new $exceptionType($exception->getMessage(), 0, $exception));
-					}
-}
-	//:::::::::::::::::END CONSTRUCTOR::::::::::::::::::::::::::
 
 }
 

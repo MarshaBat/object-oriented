@@ -259,9 +259,27 @@ class	Author {
 
 	//::::::::::::::::END METHODS:::::::::::::::::::::::::::::
 
+	//::::::::::::::::TO-STRING METHOD:::::::::::::::::::::::::::::
+	/**
+	 * toString() magic method
+	 *
+	 * @return string HTML of the formatted new author
+	 */
 
+	public function __toString() {
+		//create an HTML formatted author
+		$html = "<p>Author id: " 				 	. $this->authorId						. "<br />"
+				.	"Avatar url: "  				 	. $this->avatarUrl					. "<br />"
+				.	"Author activation token: "	. $this->authorActivationToken	. "<br />"
+				.	"Author email: "					. $this->authorEmail					. "<br />"
+				.	"Password hash: "					. $this->authorHash					. "<br />"
+				.	"Author username: "				. $this->authorUsername
+				.	"</p>";
+		return($html);
+		}
+		//::::::::::::::::END TO-STRING METHOD:::::::::::::::::::::::::::::
 
-}
+	}
 
 
 ?>

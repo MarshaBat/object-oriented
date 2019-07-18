@@ -1,5 +1,10 @@
 <?php
-namespace Mbattee\DataDesign;
+namespace Mbattee\objectoriented;
+
+require_once("autoload.php");
+require_once(dirname(__DIR__) . "/vendor/autoload.php");
+
+use Ramsey\Uuid\Uuid;
 /**
  * Trait to Validate a mySQL Date
  *

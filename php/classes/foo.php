@@ -1,8 +1,8 @@
 <?php
-namespace Mbattee\objectoriented;
+namespace Mbattee\ObjectOriented;
 
 require_once("autoload.php");
-require_once(dirname(__DIR__) . "/vendor/autoload.php");
+require_once(dirname(__DIR__, 1) . "/vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 
@@ -16,7 +16,7 @@ use Ramsey\Uuid\Uuid;
  **/
 
 class	Author implements \JsonSerializable {
-	use ValidateDate;
+	//use ValidateDate; ---> may not need
 	use ValidateUuid;
 
 	//:::::::::::::::::START OF STATE VARIABLES:::::::::::::::::
@@ -97,7 +97,7 @@ class	Author implements \JsonSerializable {
 	/**
 	 * Mutator method for authorId allows author to set a new Id for author
 	 *
-	 * @param Uuid|string $newAuthorId new value of tweet id
+	 * @param Uuid|string $newAuthorId new value of author id
 	 * @throws \RangeException if $newAuthorId is not positive
 	 * @throws \TypeError if $newAuthorId is not a uuid or string
 	 **/
@@ -202,7 +202,7 @@ class	Author implements \JsonSerializable {
 		}
 		// store the email
 		$this->authorEmail = $newAuthorEmail;
-		return; //May need to delete this line->"return;"??
+		//return; May need to delete this line->"return;"??
 	}
 
 	/**
@@ -240,7 +240,7 @@ class	Author implements \JsonSerializable {
 		}
 		//stores the hash
 		$this->authorHash = $newAuthorHash;
-		return; //added this return line due to error message
+		//return; may need to delete
 	}
 
 
@@ -270,12 +270,12 @@ class	Author implements \JsonSerializable {
 
 		//store and save the new author username
 		$this->authorUsername = $newAuthorUsername;
-		return; //Added this return line due to error tracking
+		//return; may need to delete
 	}
 
-	//:::::::::::::::::::::END METHODS::::::::::::::::::::::::::::::::::
+	//::::::::::::::::::::::::::END METHODS::::::::::::::::::::::::::::::::::
 
-	//:::::::::::::::::::::TO-STRING METHOD:::::::::::::::::::::::::::::
+	//::::::::::::::::::::::::::TO-STRING METHOD:::::::::::::::::::::::::::::
 
 	/**
 	 * toString() magic method
@@ -298,6 +298,7 @@ class	Author implements \JsonSerializable {
 	//::::::::::::::::::::::END TO-STRING METHOD:::::::::::::::::::::::::::::
 
 	//::::::::::::::::::::::START JSON SERIALIZATION:::::::::::::::::::::::::
+
 	/**
 	 * formats the state variables for JSON serialization
 	 *

@@ -223,7 +223,7 @@ class	Author implements \JsonSerializable {
 	 * @throws \TypeError if author hash is not a string
 	 **/
 
-	public function setAuthorHash($newAuthorHash) : string { //placed "string" outside of argument
+	public function setAuthorHash(string $newAuthorHash) : void { //placed "string" outside of argument
 		//enforces that the author hash is properly formatted
 		$newAuthorHash = trim($newAuthorHash);
 		if(empty($newAuthorHash) === true) {
@@ -231,18 +231,16 @@ class	Author implements \JsonSerializable {
 		}
 		//enforces that the hash is an Argon hash
 		$authorHashInfo = password_get_info($newAuthorHash);
-		if($authorHashInfo["algoName"] !== "argon2i") {
-			throw(new \InvalidArgumentException("author hash is not a valid hash"));
-		}
+		//if($authorHashInfo["algoName"] !== "argon2i") {
+			//throw(new \InvalidArgumentException("author hash is not a valid hash"));
+		//}
 		//enforces that the hash is exactly 97 characters.
-		if(strlen($newAuthorHash) !== 97) {
-			throw(new \RangeException("author hash must be 97 characters"));
-		}
+		//if(strlen($newAuthorHash) !== 97) {
+			//throw(new \RangeException("author hash must be 97 characters"));
+		//}
 		//stores the hash
-		return $this->authorHash = $newAuthorHash;
-		//return; may need to delete
+		$this->authorHash = $newAuthorHash;
 	}
-
 
 	/**
 	 * Accessor method for authorUsername
@@ -269,7 +267,7 @@ class	Author implements \JsonSerializable {
 		}
 
 		//store and save the new author username
-		$this->authorUsername = $newAuthorUsername;
+		return $this->authorUsername = $newAuthorUsername;
 		//return; may need to delete
 	}
 
@@ -306,7 +304,7 @@ class	Author implements \JsonSerializable {
 	 **/
 	public function jsonSerialize() : array {
 		$fields = get_object_vars($this);
-		$fields["authorId"] = $this->authorId->toString();    //was---> $fields["authorId"] = $this->authorId->toString();
+		$fields["authorId"] = $this->authorId->toString();   //was---> $fields["authorId"] = $this->authorId->toString();
 
 		return($fields);
 	}

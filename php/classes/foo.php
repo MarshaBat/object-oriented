@@ -231,13 +231,13 @@ class	Author implements \JsonSerializable {
 		}
 		//enforces that the hash is an Argon hash
 		$authorHashInfo = password_get_info($newAuthorHash);
-		//if($authorHashInfo["algoName"] !== "argon2i") {
-			//throw(new \InvalidArgumentException("author hash is not a valid hash"));
-		//}
+		if($authorHashInfo["algoName"] !== "argon2i") {
+			throw(new \InvalidArgumentException("author hash is not a valid hash"));
+		}
 		//enforces that the hash is exactly 97 characters.
-		//if(strlen($newAuthorHash) !== 97) {
-			//throw(new \RangeException("author hash must be 97 characters"));
-		//}
+		if(strlen($newAuthorHash) !== 97) {
+			throw(new \RangeException("author hash must be 97 characters"));
+		}
 		//stores the hash
 		$this->authorHash = $newAuthorHash;
 	}

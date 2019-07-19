@@ -16,7 +16,7 @@ use Ramsey\Uuid\Uuid;
  **/
 
 class	Author implements \JsonSerializable {
-	//use ValidateDate; ---> may not need
+	use ValidateDate;
 	use ValidateUuid;
 
 	//:::::::::::::::::START OF STATE VARIABLES:::::::::::::::::
@@ -201,7 +201,7 @@ class	Author implements \JsonSerializable {
 			throw(new \RangeException("author email length is too long"));
 		}
 		// store the email
-		$this->authorEmail = $newAuthorEmail;
+		return $this->authorEmail = $newAuthorEmail;
 		//return; May need to delete this line->"return;"??
 	}
 
@@ -236,10 +236,10 @@ class	Author implements \JsonSerializable {
 		}
 		//enforces that the hash is exactly 97 characters.
 		if(strlen($newAuthorHash) !== 97) {
-			throw(new \RangeException("profile hash must be 97 characters"));
+			throw(new \RangeException("author hash must be 97 characters"));
 		}
 		//stores the hash
-		$this->authorHash = $newAuthorHash;
+		return $this->authorHash = $newAuthorHash;
 		//return; may need to delete
 	}
 

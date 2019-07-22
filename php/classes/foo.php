@@ -112,7 +112,7 @@ class	Author implements \JsonSerializable {
 		}
 
 		// convert and store the Author id
-		$this->tweetId = $uuid;
+		$this->authorId = $uuid;
 	}
 
 	/**

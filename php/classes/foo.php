@@ -123,6 +123,14 @@ class	Author implements \JsonSerializable {
 		return($this->authorAvatarUrl);
 	}
 
+	/**
+	 * Mutator method for authorAvatarUrl
+	 *
+	 * @param string $newAuthorAvatarUrl new value of author avatar url
+	 * @throws \RangeException if the author avatar url is greater than 255 characters
+	 * @throws \InvalidArgumentException  if the author avatar url is not a string or insecure
+	 **/
+
 	public function setAuthorAvatarUrl(string $newAuthorAvatarUrl) : void {
 
 		$newAuthorAvatarUrl = trim($newAuthorAvatarUrl);
@@ -280,7 +288,7 @@ class	Author implements \JsonSerializable {
 	public function insert (\PDO $pdo) : void {
 
 		//This creates a query template.
-		$query = "INSERT INTO author (authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorHash, authorUsername) VALUES (:authorId, :authorAvatarUrl, :authorActivationToken, :authorEmail, :authorHash, :authoUsername)";
+		$query = "INSERT INTO author(authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorHash, authorUsername) VALUES (:authorId, :authorAvatarUrl, :authorActivationToken, :authorEmail, :authorHash, :authoUsername)";
 		$statement = $pdo->prepare($query);
 
 		//binds the member variables to the place holder in the template
@@ -302,7 +310,7 @@ class	Author implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		//binds the member variables to the place holder in the template
-		$parameters = ["authorId" = $this->authorId->getBytes()];
+		$parameters = ["authorId" => $this->authorId->getBytes()];
 		$statement->execute($parameters);
 
 	}

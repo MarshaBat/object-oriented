@@ -13,11 +13,5 @@ $author = new Author('e4bb089c-825b-416e-be9a-5948390ac564', 'http://go.com', '1
 var_dump($author);
 
 
-
-
-
-
-
-
 ?>
 

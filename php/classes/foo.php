@@ -439,9 +439,3 @@ class	Author implements \JsonSerializable {
 }
 ?>
 
-
-
-
-
-
-

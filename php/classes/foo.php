@@ -16,39 +16,39 @@ use Ramsey\Uuid\Uuid;
  **/
 
 class	Author implements \JsonSerializable {
-	use ValidateDate;
 	use ValidateUuid;
 
-	//:::::::::::::::::START OF STATE VARIABLES:::::::::::::::::
-
 	/**
-	 *This is an ID for the author's profile. This is the PRIMARY KEY and a NUMERIC VALUE.
+	 * This is an ID for the author's profile. This is the PRIMARY KEY and a NUMERIC VALUE.
+	 * @var Uuid $authorId
 	 **/
 	private $authorId;
 	/**
-	 *A website link for a personal page for the author of this profile.
+	 * A website link for a personal page for the author of this profile.
+	 * @var string $authorAvatarUrl
 	 **/
 	private $authorAvatarUrl;
 	/**
-	 *Token give to verify that the profile is valid and not malicious.
+	 * Token give to verify that the profile is valid and not malicious.
+	 * @var string $authorActivationToken
 	 **/
 	private $authorActivationToken;
 	/**
-	 *Email for this profile. This is a unique index.
+	 * Email for this profile. This is a unique index.
+	 * @var string $authorEmail
 	 **/
 	private $authorEmail;
 	/**
 	 * Hash for profile password.
+	 * @var string $authorHash
 	 **/
 	private $authorHash;
 	/**
-	 *This is the author's username.
+	 * This is the author's username.
+	 * @var string $authorUsername
 	 **/
 	private $authorUsername;
 
-	//::::::::::::::::END OF STATE VARIABLES::::::::::::::::::::
-
-	//::::::::::::::::BEGIN CONSTRUCTOR:::::::::::::::::::::::::
 
 	/**
 	 * Constructor for this Author class
@@ -80,9 +80,7 @@ class	Author implements \JsonSerializable {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
-	//:::::::::::::::::END CONSTRUCTOR::::::::::::::::::::::::::
 
-	//::::::::::::::::BEGIN METHODS:::::::::::::::::::::::::::::
 
 	/**
 	 * Accessor method for authorId
@@ -271,10 +269,6 @@ class	Author implements \JsonSerializable {
 		//return; may need to delete
 	}
 
-	//::::::::::::::::::::::::::END METHODS::::::::::::::::::::::::::::::::::
-
-	//::::::::::::::::::::::::::PDO::::::::::::::::::::::::::::::::::::::::::
-
 	/**
 	 * Inserts this author information into MySQL
 	 *
@@ -403,7 +397,6 @@ class	Author implements \JsonSerializable {
 	}
 
 
-	//::::::::::::::::::::::::::TO-STRING METHOD:::::::::::::::::::::::::::::
 
 	/**
 	 * toString() magic method
@@ -423,9 +416,6 @@ class	Author implements \JsonSerializable {
 		return($html);
 		}
 
-	//::::::::::::::::::::::END TO-STRING METHOD:::::::::::::::::::::::::::::
-
-	//::::::::::::::::::::::START JSON SERIALIZATION:::::::::::::::::::::::::
 
 	/**
 	 * formats the state variables for JSON serialization
@@ -434,11 +424,10 @@ class	Author implements \JsonSerializable {
 	 **/
 	public function jsonSerialize() : array {
 		$fields = get_object_vars($this);
-		$fields["authorId"] = $this->authorId->toString();   //was---> $fields["authorId"] = $this->authorId->toString();
+		$fields["authorId"] = $this->authorId->toString();
 
 		return($fields);
 	}
-	//::::::::::::::::END JSON SERIALIZATION:::::::::::::::::::::::::::::::
 }
 ?>
 

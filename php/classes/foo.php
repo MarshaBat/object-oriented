@@ -22,7 +22,7 @@ class	Author implements \JsonSerializable {
 	//:::::::::::::::::START OF STATE VARIABLES:::::::::::::::::
 
 	/**
-	 *This ia an ID for the author's profile. This is the PRIMARY KEY and a NUMERIC VALUE.
+	 *This is an ID for the author's profile. This is the PRIMARY KEY and a NUMERIC VALUE.
 	 **/
 	private $authorId;
 	/**

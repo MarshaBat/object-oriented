@@ -273,6 +273,25 @@ class	Author implements \JsonSerializable {
 
 	//::::::::::::::::::::::::::END METHODS::::::::::::::::::::::::::::::::::
 
+	//::::::::::::::::::::::::::PDO::::::::::::::::::::::::::::::::::::::::::
+
+	/**
+	 *Inserts this author information into MySQL
+ 	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+ 	*/
+
+	public function insert (\PDO $pdo) : void {
+
+		//This creates a query template.
+		$query = "INSERT INTO author (authorId, authorAvatarUrl, authorActivationToken, authorEmail, authorHash, authoUsername) VALUES (:authorId, :authorAvatarUrl, :authorActivationToken, :authorEmail, :authorHash, :authoUsername)";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["authorId" => $this->authorId->getBytes(), "authorAvatarUrl" => $this->authorAvatarUrl->getBytes(), "authorActivationToken" => $this->authorActivationToken->getBytes(), "authorEmail" => $this->authorEmail->getBytes(), "authorHash" => $this->authorHash->getBytes(), "authorUsername" => $this->authorUsername->getBytes()];
+		$statement->execute($parameters);
+	}
+
 	//::::::::::::::::::::::::::TO-STRING METHOD:::::::::::::::::::::::::::::
 
 	/**
@@ -311,3 +330,10 @@ class	Author implements \JsonSerializable {
 	//::::::::::::::::END JSON SERIALIZATION:::::::::::::::::::::::::::::::
 }
 ?>
+
+
+
+
+
+
+

@@ -16,13 +16,7 @@ var_dump($author);
 
 
 
-public function insert (\PDO $pdo) : void {
 
-	//This creates a query template.
-	$query = "INSERT INTO Author (authorAvatarUrl, authorEmail, authorUsername) VALUES (:authorAvatarUrl, :authorEmail, :authorUsername)";
-		$statement = $pdo->prepare($query);
-
-}
 
 
 ?>

@@ -432,7 +432,7 @@ class	Author implements \JsonSerializable {
 	 **/
 	public function jsonSerialize() : array {
 		$fields = get_object_vars($this);
-		$fields["authorId"] = $this->authorId->toString();
+		$fields["authorId"] = $this->authorId;
 
 		return($fields);
 	}
